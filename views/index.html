@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mailer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .endpoint {
+            margin-bottom: 15px;
+        }
+
+        .endpoint-method {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .example {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            word-wrap: break-word;
+        }
+
+        .text-justify {
+            text-align: justify !important;
+        }
+        /* responsive */
+        @media (max-width: 767px) {
+            .main {
+                width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container main my-5" style="width: 75%;">
+        <h1 class="text-center mb-4">Email Sending API</h1>
+        <div class="container">
+            <p class="text-justify">Welcome to the Email Sending API documentation. This API allows you to send
+                emails by providing the sender data, receiver information, subject and HTML content without any
+                authentication. Follow the instructions below to integrate this API into your application and start
+                sending emails seamlessly.</p>
+
+            <h2>Base URL</h2>
+            <p>The base URL for accessing the Email Sending API is:</p>
+            <a href="https://mailer-ritik.vercel.app">
+                <pre>https://mailer-ritik.vercel.app</pre>
+            </a>
+            <h2>Send Email</h2>
+            <p class="text-justify">This (<code>/send</code>) endpoint allows you to send an email to a specific receiver. Provide the
+                sender's data, receiver's
+                information, subject and the HTML content of the email.</p>
+            <h4>Request Body Parameters</h4>
+            <table class="mb-4">
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Required</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><strong>sender</strong></td>
+                    <td>object</td>
+                    <td>Yes</td>
+                    <td>This includes name, email and app generated email password of the sender.</td>
+                </tr>
+                <tr>
+                    <td><strong>receiver</strong></td>
+                    <td>string</td>
+                    <td>Yes</td>
+                    <td>The email address of the receiver.</td>
+                </tr>
+                <tr>
+                    <td><strong>subject</strong></td>
+                    <td>string</td>
+                    <td>Yes</td>
+                    <td>The subject line of the email.</td>
+                </tr>
+                <tr>
+                    <td><strong>data</strong></td>
+                    <td>string</td>
+                    <td>Yes</td>
+                    <td>The HTML content of the email.</td>
+                </tr>
+            </table>
+
+            <h4>Response</h4>
+            <p>If the email is sent successfully, the API will respond with a <code>200 OK</code> status code and the
+                following JSON response:</p>
+            <pre class="example">
+{
+  "type": "success",
+  "message": "Email sent successfully" 
+}</pre>
+            <p>If there is an error sending the email, the API will respond with an appropriate error status code and a
+                JSON response indicating the error:</p>
+                <pre class="example">
+{
+  "type": "error",
+  "message": "Invalid sender credentials" 
+}</pre>
+            <h4 class="mt-5">Example</h4>
+            <p><strong>Request:</strong></p>
+            <pre class="example">
+fetch("https://mailer-ritik.vercel.app/send", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        sender: {
+            name: "Sender Name",
+            mail: "Sender Email",
+            password: "Sender Password"
+        },
+        receiver: "Receiver Email",
+        subject: "Your Subject",
+        data: "Your HTML Content"
+    })
+});</pre>
+
+            <p><strong>Response:</strong></p>
+            <pre class="example">
+HTTP/1.1 200 OK
+Content-Type: application/json
+{
+  "type": "success",
+  "message": "Email sent successfully"
+}</pre>
+
+            <h2>Conclusion</h2>
+            <p>You have successfully learned how to integrate and use the Email Sending API. You can now start sending
+                emails programmatically by providing the necessary data to the API. If you encounter any issues or have
+                further questions, please <a target="_blank" href="https://theritiktiwari.vercel.app">contact me</a>.</p>
+            <p>Happy emailing!</p>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
