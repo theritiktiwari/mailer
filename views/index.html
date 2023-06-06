@@ -100,8 +100,8 @@
                 <tr>
                     <td><strong>receiver</strong></td>
                     <td>string</td>
-                    <td>Yes</td>
-                    <td>The email address of the receiver.</td>
+                    <td>Yes/No</td>
+                    <td>The email address of the receiver. <br /> Mandatory: If only one receiver</td>
                 </tr>
                 <tr>
                     <td><strong>subject</strong></td>
@@ -114,6 +114,18 @@
                     <td>string</td>
                     <td>Yes</td>
                     <td>The HTML content of the email.</td>
+                </tr>
+                <tr>
+                    <td><strong>cc</strong></td>
+                    <td>Array</td>
+                    <td>Yes/No</td>
+                    <td>The list of email address of the receiver. <br /> Mandatory: If want to send as CC</td>
+                </tr>
+                <tr>
+                    <td><strong>bcc</strong></td>
+                    <td>Array</td>
+                    <td>Yes/No</td>
+                    <td>The list of email address of the receiver. <br /> Mandatory: If want to send as BCC</td>
                 </tr>
             </table>
 

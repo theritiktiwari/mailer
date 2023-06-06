@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 
 app.post("/send", async (req, res) => {
     try {
-        const { sender, receiver, subject, data } = req.body;
+        const { sender, receiver, subject, data, cc, bcc } = req.body;
         // Create a transporter
         let transporter = nodemailer.createTransport({
             service: "gmail",
@@ -26,9 +26,11 @@ app.post("/send", async (req, res) => {
 
         const info = await transporter.sendMail({
             from: `"${sender.name}" <${sender.mail}>`,
-            to: receiver,
+            to: receiver && receiver.length > 0 ? receiver : null,
             subject: subject,
             html: data,
+            cc: cc && cc.length > 0 ? cc : null,
+            bcc: bcc && bcc.length > 0 ? bcc : null
         });
 
         let result = (info.accepted.length > 0) ? true : false;
